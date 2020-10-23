@@ -6,6 +6,7 @@
 *.ko
 *.obj
 *.elf
+*.pyo # Python object files
 
 # Linker output
 *.ilk
