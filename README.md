@@ -1,2 +1,2 @@
 # Easyscript
-This repository is a programming language, for programmers and more!
+This repository is a package of Easyscript programming language, for programmers and more!
