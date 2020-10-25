@@ -1,0 +1,4 @@
+Basic syntaxs:
+1. Operators:
+  (1) Numerical operators:
+    "+", "-", "*", "/", "//", "**", "%"
