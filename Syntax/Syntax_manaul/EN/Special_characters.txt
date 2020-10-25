@@ -1,0 +1,5 @@
+Special characters in Fastscript programming language syntax manual:
+{}: Items that must appear.
+(): Items that can be omitted.
+"": Characters that must appear.
+|: Only need to satisfy one item.
