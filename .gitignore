@@ -28,6 +28,7 @@
 *.so
 *.so.*
 *.dylib
+*.pyc # Python shared objects
 
 # Executables
 *.exe
