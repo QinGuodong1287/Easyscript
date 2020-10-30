@@ -1,7 +1,12 @@
 import sys
 from subprocess import Popen
 
+import cursor_contorl
+
+cursor_contorl.hide_cursor()
+
 def quit() -> int:
+    cursor_contorl.show_cursor()
     return sys.exit(0)
 
 def execute(command: str) -> int:
@@ -10,7 +15,9 @@ def execute(command: str) -> int:
 
 def move(direction: str) -> int:
     if direction in ("up", "down", "left", "right"):
-        return direction
+        return 0
+    else:
+        return 1
 
 def move_up():
     return move("up")
