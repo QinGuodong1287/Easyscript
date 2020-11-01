@@ -1,4 +1,4 @@
-# The Easyscript programming language
+# The Easyscript programming language - Make programming easy
 > **Note:**\
 > This repository is for Easyscript programming language, for programmers and more people!
 ## Version history:
