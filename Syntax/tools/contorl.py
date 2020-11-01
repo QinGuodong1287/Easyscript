@@ -4,6 +4,7 @@ from subprocess import Popen
 import cursor_contorl
 
 cursor_contorl.hide_cursor()
+cursor_contorl.clear()
 
 def quit() -> int:
     cursor_contorl.show_cursor()
