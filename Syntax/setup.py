@@ -12,14 +12,14 @@ except ImportError: # If import is failed
     # Install the Cython extension
     pwd = os.getcwd()
     os.chdir(build_ext_path)
-    print("\033[70mBuilding extension...\033[0m")
+    print("\033[5mBuilding extension...\033[0m")
     contorl.execute("python install_setup.py build_ext --inplace")
-    print("\033[70mInstalling extension...\033[0m")
+    print("\033[5mInstalling extension...\033[0m")
     contorl.execute("python install_setup.py install")
     os.chdir(pwd)
     # Just import it
     try:
-        import cursor_contorl
+        from tools import cursor_contorl
     except ImportError: # If import is failed
         print("Can't inport the extension, exitting this program...")
         del pwd
