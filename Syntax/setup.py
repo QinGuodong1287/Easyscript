@@ -1,21 +1,34 @@
 import os, sys
 
+def show_cursor() -> None:
+    print("\033[?25h")
+
+file_path = os.path.dirname(os.path.abspath(__file__))
 from tools import reader, contorl
-build_ext_path = os.path.dirname(os.path.abspath(__file__)) + "/tools"
+build_ext_path = file_path + "/tools"
 try:
-    import cursor_contorl # Import the Cython extension
+    from tools import cursor_contorl # Import the extension
 except ImportError: # If import is failed
     # Install the Cython extension
-    contorl.execute(f"python {build_ext_path + '/install_setup.py'} build_ext --inplace")
-    contorl.execute(f"python {build_ext_path + '/install_setup.py'} install")
+    pwd = os.getcwd()
+    os.chdir(build_ext_path)
+    print("\033[70mBuilding extension...\033[0m")
+    contorl.execute("python install_setup.py build_ext --inplace")
+    print("\033[70mInstalling extension...\033[0m")
+    contorl.execute("python install_setup.py install")
+    os.chdir(pwd)
     # Just import it
     try:
-        from tools import cursor_contorl
+        import cursor_contorl
     except ImportError: # If import is failed
-        print("Can't install the Cython extension, exitting this program...")
+        print("Can't inport the extension, exitting this program...")
+        del pwd
+        show_cursor()
         sys.exit(0)
+    del pwd
+contorl.execute("clear")
 
-text_path = os.path.dirname(os.path.abspath(__file__)) + "/Syntax_manaul/CN"
+text_path = file_path + "/Syntax_manaul/CN"
 keylayouts = {
     "q": contorl.quit,       # Quit the manaul
     "j": contorl.move_down,  # Go to down text
@@ -26,7 +39,6 @@ keylayouts = {
 keys = tuple(keylayouts.keys())
 
 def main() -> int:
-    contorl.execute("clear")
     print("""Welcome to the Syntax manaul for Easyscript programming language.
 Press any key to read this manaul.
 Keys:
@@ -58,4 +70,4 @@ l: read next text.""")
 
 if __name__ == "__main__":
     main()
-cursor_contorl.show_cursor()
+    contorl.execute("clear")
