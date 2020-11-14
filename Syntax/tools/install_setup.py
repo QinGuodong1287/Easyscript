@@ -1,13 +1,15 @@
 from distutils.core import setup
-from subprocess import Popen
 import os
-from sys import stdin, stdout, stderr
 from Cython.Build import cythonize
+
+program_path = os.path.dirname(os.path.abspath(__file__))
+
+from .contorl import execute
 
 setup(
     name="cursor_contorl", 
     ext_modules=cythonize(
-        os.path.dirname(os.path.abspath(__file__)) + "/source_codes/cursor_contorl.py"
+        program_path + "/source_codes/cursor_contorl.py"
     )
 )
-Popen("mv cursor_contorl.c source_codes/", shell=True, stdin=stdin, stdout=stdout, stderr=stderr).wait()
+execute("mv cursor_contorl.c source_codes/", output=False)
