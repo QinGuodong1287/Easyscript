@@ -1,10 +1,13 @@
 import os, sys
 
+program_path = os.path.dirname(os.path.abspath(__file__))
+if os.path.exists(program_path + "/error.txt"):
+    os.remove(program_path + "/error.txt")
+
 def show_cursor() -> None:
     print("\033[?25h")
 
-from tools import reader, contorl, settings
-program_path = os.path.dirname(os.path.abspath(__file__))
+from tools import reader, contorl, settings, fonts
 build_ext_path = program_path + "/tools"
 error_file_path = program_path + "/error.txt"
 try:
@@ -46,8 +49,8 @@ j: move the page down.
 k: move the page up.
 h: read pervious text.
 l: read next text."""
-text_list = welcome_text.splitlines()
-text_list[0] = f"{text_list[0]}\033[7m{' ' * (os.get_terminal_size().columns - len(text_list[0]) + 8)}\033[0m"
+text_list = [line.rstrip() for line in welcome_text.splitlines()]
+text_list[1:] = [fonts.Font.white_background(line + ' ' * (os.get_terminal_size().columns - len(line))) for line in text_list[1:]]
 welcome_text = '\n'.join(text_list)
 del text_list
 
