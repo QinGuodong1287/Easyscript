@@ -21,15 +21,14 @@ except ImportError: # If import is failed
     print("\033[5mInstalling extension...\033[0m")
     contorl.execute("python install_setup.py install")
     os.chdir(pwd)
+    del pwd
     # Just import it
     try:
         from tools import cursor_contorl
     except ImportError: # If import is failed
         print("Can't inport the extension, exitting this program...")
-        del pwd
         show_cursor()
         sys.exit(0)
-    del pwd
 contorl.execute("clear")
 
 keylayouts = {
