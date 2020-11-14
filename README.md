@@ -1,6 +1,11 @@
-# The Easyscript programming language - Make programming easy
+# Easyscript
+
+> **Future:**\
+> This programming language can make programming easy.
+
 > **Note:**\
 > This repository is for Easyscript programming language, for programmers and more people!
+
 ## Version history:
 Time | Version
 ---- | -------
