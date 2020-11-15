@@ -13,4 +13,4 @@ contents = {
     }
 }
 screen_columns = os.get_terminal_size().columns
-screen_rows = os.get_terminal_size().lines
+screen_lines = os.get_terminal_size().lines

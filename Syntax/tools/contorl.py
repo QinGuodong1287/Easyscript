@@ -38,14 +38,19 @@ def print_text() -> None:
     execute("clear")
     print(settings.title)
     with open(filepath) as fp:
-        text_list = [fonts.Font.white_background(line.rstrip() + ' ' * (os.get_terminal_size().columns - len(line) + 1)) for line in fp.readlines()]
+        text_list = [line.rstrip() for line in fp.readlines()]
     text_list[0] = fonts.Font.bold(text_list[0])
     print('\n'.join(text_list))
 
 def fill_screen(lines: list or tuple) -> str:
     if isinstance(lines, dict):
         raise ValueError("The lines list's type can't be a dict!")
-    return ""
+    text_list = lines[:]
+    if text_list[0] != settings.title:
+        text_list.insert(0, settings.title)
+    text_list = [text_list[0]] + [fonts.Font.white_background(line + ' ' * (settings.screen_columns - len(line))) for line in text_list[1:settings.screen_lines]]
+    text_list += [fonts.Font.white_background(' ' * settings.screen_columns) for _ in range(len(text_list), settings.screen_lines - 1)]
+    return '\n'.join(text_list)
 
 def move(direction: str) -> int:
     if direction not in ("up", "down", "left", "right"):
