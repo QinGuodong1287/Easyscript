@@ -14,14 +14,14 @@ try:
     from tools import cursor_contorl # Import the extension
 except ImportError: # If import is failed
     # Install the Cython extension
-    pwd = os.getcwd()
+    cwd = os.getcwd()
     os.chdir(build_ext_path)
     print("\033[5mBuilding extension...\033[0m")
     contorl.execute("python install_setup.py build_ext --inplace")
     print("\033[5mInstalling extension...\033[0m")
     contorl.execute("python install_setup.py install")
-    os.chdir(pwd)
-    del pwd
+    os.chdir(cwd)
+    del cwd
     # Just import it
     try:
         from tools import cursor_contorl
@@ -49,7 +49,6 @@ k: move the page up.
 h: read pervious text.
 l: read next text."""
 text_list = [line.rstrip() for line in welcome_text.splitlines()]
-text_list[1:] = [fonts.Font.white_background(line + ' ' * (os.get_terminal_size().columns - len(line))) for line in text_list[1:]]
 welcome_text = '\n'.join(text_list)
 del text_list
 
